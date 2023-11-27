@@ -22,7 +22,7 @@ pipeline {
             steps {
                 script {
                     // Comandos para executar testes (por exemplo, JUnit)
-                    echo 'Execução dos Testes da app'
+                    echo 'Execução dos Testes da app (sh mvn teste)'
                     
                 }
             }
