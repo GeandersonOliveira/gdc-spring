@@ -32,7 +32,7 @@ pipeline {
             steps {
                 script {
                     // Comandos para implantar sua aplicação (por exemplo, enviar para um servidor)
-                    echo 'docker run container'
+                    echo 'docker run container (docker run --network="host" -p 8082:8082 IDimagem)'
                 }
             }
         }
