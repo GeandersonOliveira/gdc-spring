@@ -11,7 +11,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    // Comandos para construir seu projeto (por exemplo, Maven ou Gradle)
+                    // Comandos para construir Maven
                     echo 'Build da Imagem mvn spring-boot:build-image'
                     
                 }
@@ -22,7 +22,16 @@ pipeline {
             steps {
                 script {
                     // Comandos para executar testes (por exemplo, JUnit)
-                    echo 'Execução dos Testes da app (sh mvn teste)'
+                    echo 'Execução dos Testes da app (sh mvn test)'
+                    
+                }
+            }
+        }
+           stage('Sonar') {
+            steps {
+                script {
+                    // Comandos para analise do sonar
+                    echo 'Configurar Sonar'
                     
                 }
             }
@@ -31,7 +40,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    // Comandos para implantar sua aplicação (por exemplo, enviar para um servidor)
+                    // Comandos para implantação
                     echo 'docker run container (docker run --network="host" -p 8082:8082 IDimagem)'
                 }
             }
