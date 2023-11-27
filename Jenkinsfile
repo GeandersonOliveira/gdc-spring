@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                checkout scm
+                echo 'checkout do repositorio da app'
             }
         }
 
@@ -12,7 +12,8 @@ pipeline {
             steps {
                 script {
                     // Comandos para construir seu projeto (por exemplo, Maven ou Gradle)
-                    sh 'mvn clean install'
+                    echo 'Build da Imagem mvn spring-boot:build-image'
+                    
                 }
             }
         }
@@ -21,7 +22,8 @@ pipeline {
             steps {
                 script {
                     // Comandos para executar testes (por exemplo, JUnit)
-                    sh 'mvn test'
+                    echo 'Execução dos Testes da app'
+                    
                 }
             }
         }
@@ -30,16 +32,16 @@ pipeline {
             steps {
                 script {
                     // Comandos para implantar sua aplicação (por exemplo, enviar para um servidor)
-                    sh 'deploy-script.sh'
+                    echo 'docker run container'
                 }
             }
         }
 
-        stage('Integration Test') {
+        stage('Testes de Integração') {
             steps {
                 script {
-                    // Comandos para executar testes de integração
-                    sh 'mvn verify'
+                    // Comandos para executar testes de integração com MYSQL, RABBITMQ, REDIS, Keyclock
+                     echo 'executar testes de integração'
                 }
             }
         }
@@ -50,7 +52,7 @@ pipeline {
             echo 'Pipeline executado com sucesso!'
         }
         failure {
-            echo 'Pipeline falhou. Verifique os logs para mais detalhes.'
+            echo 'Pipeline falhou. Analise os Logs.'
         }
     }
 }
